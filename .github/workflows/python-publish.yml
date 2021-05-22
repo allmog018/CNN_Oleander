@@ -5,7 +5,7 @@ name: Upload Python Package
 
 on:
   push: 
-    branches: [ Automation Pipeline ]
+    branches: [ Automation-Pipeline ]
 
 jobs:
   deploy:
