@@ -1,0 +1,36 @@
+# This workflow will upload a Python Package using Twine when a release is created
+# For more information see: https://help.github.com/en/actions/language-and-framework-guides/using-python-with-github-actions#publishing-to-package-registries
+
+name: Upload Python Package
+
+on:
+  push: 
+    branches: [ Automation Pipeline ]
+
+jobs:
+  deploy:
+
+    runs-on: self-hosted
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install setuptools wheel twine
+    - name: Download TorchVision repo
+      run: |
+        git clone https://github.com/pytorch/vision.git
+        cd vision
+        git checkout v0.3.0
+        cp references/detection/utils.py ../
+        cp references/detection/transforms.py ../
+        cp references/detection/coco_eval.py ../
+        cp references/detection/engine.py ../
+        cp references/detection/coco_utils.py ../
+  
