@@ -14,7 +14,7 @@ RUN apt install curl
 RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 RUN python3 get-pip.py --force-reinstall
 
-
+RUN pip install Cython
 
 
 RUN useradd -m allmog018
