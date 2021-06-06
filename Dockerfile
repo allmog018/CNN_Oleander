@@ -1,20 +1,19 @@
 FROM nvidia/cuda:9.0-cudnn7-runtime-ubuntu16.04
+RUN apt-get install -y python3-pip sudo
+
 RUN apt-get update && apt-get install -y python-pip sudo 
-
-RUN apt-get install -y python3-pip sudo 
-
 RUN apt-get install -y software-properties-common sudo
 RUN add-apt-repository ppa:deadsnakes/ppa
 RUN apt-get update
 RUN apt-get install -y python3.8 sudo
-
+RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.8 1
+RUN apt install -y python3.8-distutils sudo
 #RUN python -m pip install --upgrade pip
-
+RUN apt install curl
 RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 RUN python3 get-pip.py --force-reinstall
 
-RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.8 1
-RUN apt install -y python3.8-distutils sudo
+
 
 
 RUN useradd -m allmog018
