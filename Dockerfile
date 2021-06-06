@@ -7,7 +7,7 @@ RUN apt-get install -y software-properties-common sudo
 RUN add-apt-repository ppa:deadsnakes/ppa
 RUN apt-get update
 RUN apt-get install -y python3.8 sudo
-RUN apt-get install -y python3-dev sudo
+RUN apt-get install -y python-dev sudo
 RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.8 1
 RUN apt install -y python3.8-distutils sudo
 #RUN python -m pip install --upgrade pip
