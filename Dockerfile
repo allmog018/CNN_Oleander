@@ -4,7 +4,7 @@ RUN apt-get install -y software-properties-common sudo
 
 
 
-#$ sudo add-apt-repository ppa:deadsnakes/ppa
+RUN add-apt-repository ppa:deadsnakes/ppa
 #$ sudo apt-get update
 #$ sudo apt-get install python3.8
 
