@@ -1,4 +1,4 @@
-FROM nvidia/cuda:9.0-cudnn7-runtime-ubuntu18.04
+FROM nvidia/cuda:9.0-cudnn7-runtime-ubuntu16.04
 RUN apt-get update && apt-get install -y python3-pip sudo
 RUN useradd -m allmog018
 RUN chown -R allmog018:allmog018 /home/allmog018/
