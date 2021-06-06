@@ -1,7 +1,8 @@
 FROM nvidia/cuda:9.0-cudnn7-runtime-ubuntu16.04
+RUN apt-get update && apt-get install -y python-pip sudo 
 RUN apt-get install -y python3-pip sudo
 
-RUN apt-get update && apt-get install -y python-pip sudo 
+
 RUN apt-get install -y software-properties-common sudo
 RUN add-apt-repository ppa:deadsnakes/ppa
 RUN apt-get update
