@@ -6,7 +6,7 @@ RUN apt-get install -y software-properties-common sudo
 
 RUN add-apt-repository ppa:deadsnakes/ppa
 RUN apt-get update
-RUN apt-get install python3.8
+RUN apt-get install -y python3.8 sudo
 
 RUN useradd -m allmog018
 RUN chown -R allmog018:allmog018 /home/allmog018/
