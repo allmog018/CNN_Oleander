@@ -28,6 +28,5 @@ RUN chown -R allmog018:allmog018 /home/allmog018/
 COPY --chown=allmog018 . /home/allmog018/
 USER allmog018
 RUN cd /home/allmog018/ && pip3 install -r requirements.txt
-RUN pip install torch-1.1.0-cp37-cp37m-linux_x86_64.whl
-RUN pip install torchvision-0.3.0-cp37-cp37m-manylinux1_x86_64.whl
+RUN pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org torch===1.1.0 torchvision===0.3.0 -f https://download.pytorch.org/whl/torch_stable.html
 WORKDIR /home/allmog018/
