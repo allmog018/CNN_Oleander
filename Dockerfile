@@ -14,7 +14,7 @@ RUN apt install curl
 RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 RUN python3 get-pip.py --force-reinstall
 
-RUN pip install setuptools
+RUN pip install --upgrade setuptools
 RUN apt install python3-virtualenv
 RUN python3 -m virtualenv --python=/usr/bin/python3 /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
