@@ -15,6 +15,7 @@ RUN apt install -y python3.8-distutils sudo
 RUN apt install curl
 RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 RUN python3 get-pip.py --force-reinstall
+
 RUN echo "export PATH=/home/allmog018/.local/bin" >> ~/.bashrc 
 RUN pip install --upgrade setuptools 
 #RUN apt install python3-virtualenv
@@ -22,6 +23,15 @@ RUN pip install --upgrade setuptools
 #ENV PATH="/opt/venv/bin:$PATH"
 RUN pip install Cython
 
+RUN git clone https://github.com/pytorch/vision.git
+RUN cd vision
+RUN git checkout v0.3.0
+
+RUN cp references/detection/utils.py ../
+RUN cp references/detection/transforms.py ../
+RUN cp references/detection/coco_eval.py ../
+RUN cp references/detection/engine.py ../
+RUN cp references/detection/coco_utils.py ../
 
 RUN useradd -m allmog018
 RUN chown -R allmog018:allmog018 /home/allmog018/
