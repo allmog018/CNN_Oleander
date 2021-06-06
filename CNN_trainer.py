@@ -119,8 +119,8 @@ def get_transform(train):
 
 
 # use our dataset and defined transformations
-dataset = NNDataset('/srv/home/allmog018/dataset', get_transform(train=True))
-dataset_test = NNDataset('/srv/home/allmog018/dataset', get_transform(train=False))
+dataset = NNDataset('/home/allmog018/CNN_Oleander/dataset', get_transform(train=True))
+dataset_test = NNDataset('/home/allmog018/CNN_Oleander/dataset', get_transform(train=False))
 
 # split the dataset in train and test set
 torch.manual_seed(1)
