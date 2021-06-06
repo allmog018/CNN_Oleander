@@ -10,6 +10,8 @@ RUN apt-get install -y python3.8 sudo
 
 RUN pip3 install --upgrade pip
 
+RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.8 1
+
 RUN useradd -m allmog018
 RUN chown -R allmog018:allmog018 /home/allmog018/
 COPY --chown=allmog018 . /home/allmog018
