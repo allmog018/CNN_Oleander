@@ -1,4 +1,2 @@
-pytorch==1.0.2
 numpy
-torchvision==0.3.0
 pycocotools

@@ -28,4 +28,5 @@ RUN chown -R allmog018:allmog018 /home/allmog018/
 COPY --chown=allmog018 . /home/allmog018/
 USER allmog018
 RUN cd /home/allmog018/ && pip3 install -r requirements.txt
+RUN pip install torch==1.1.0 torchvision==0.3.0 -f https://download.pytorch.org/whl/cu90/torch_stable.html
 WORKDIR /home/allmog018/
