@@ -14,5 +14,5 @@ RUN useradd -m allmog018
 RUN chown -R allmog018:allmog018 /home/allmog018/
 COPY --chown=allmog018 . /home/allmog018
 USER allmog018
-RUN cd /home/allmog018/ && pip install -r requirements.txt
+RUN cd /home/allmog018/ && pip3 install -r requirements.txt
 WORKDIR /home/allmog018
