@@ -13,6 +13,8 @@ RUN apt install -y python3.8-distutils sudo
 RUN apt install curl
 RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 RUN python3 get-pip.py --force-reinstall
+
+RUN apt install python3-virtualenv
 RUN python3 -m virtualenv --python=/usr/bin/python3 /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 RUN pip install Cython
