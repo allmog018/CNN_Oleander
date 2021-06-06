@@ -15,7 +15,7 @@ RUN apt install -y python3.8-distutils sudo
 RUN apt install curl
 RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 RUN python3 get-pip.py --force-reinstall
-
+RUN python3.8
 RUN echo "export PATH=/home/allmog018/.local/bin" >> ~/.bashrc 
 RUN pip install --upgrade setuptools 
 #RUN apt install python3-virtualenv
