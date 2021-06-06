@@ -28,5 +28,6 @@ RUN chown -R allmog018:allmog018 /home/allmog018/
 COPY --chown=allmog018 . /home/allmog018/
 USER allmog018
 RUN cd /home/allmog018/ && pip3 install -r requirements.txt
-RUN pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org torch===1.1.0 torchvision===0.3.0 -f https://download.pytorch.org/whl/torch_stable.html
+RUN pip install conda
+RUN conda install pytorch==1.1.0 torchvision==0.3.0 cudatoolkit=9.0 -c pytorch
 WORKDIR /home/allmog018/
