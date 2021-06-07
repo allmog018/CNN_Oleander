@@ -1,3 +1,2 @@
 numpy
-pycocotools
-torchvision.models
+pycocotools=
