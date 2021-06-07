@@ -29,5 +29,6 @@ COPY --chown=allmog018 . /home/allmog018/
 USER allmog018
 RUN cd /home/allmog018/ && pip3 install -r requirements.txt
 RUN pip install conda
+RUN echo "export PATH=~/anaconda3/bin:$PATH" >> ~/.bashrc 
 RUN conda install pytorch==1.1.0 torchvision==0.3.0 cudatoolkit=9.0 -c pytorch
 WORKDIR /home/allmog018/
