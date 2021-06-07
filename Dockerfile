@@ -10,7 +10,7 @@ RUN apt-get install -y python3.7 sudo
 RUN apt-get install -y python3.7-dev sudo
 
 RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.7 1
-RUN apt install -y python3.8-distutils sudo
+RUN apt install -y python3.7-distutils sudo
 #RUN python -m pip install --upgrade pip
 RUN apt install curl
 RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
