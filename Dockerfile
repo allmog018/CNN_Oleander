@@ -25,7 +25,7 @@ RUN pip install Cython
 
 RUN useradd -m allmog018
 RUN chown -R allmog018:allmog018 /home/allmog018/
-COPY --chown=allmog018 . /home/allmog018/app/
+COPY --chown=allmog018 . /home/allmog018
 USER allmog018
 RUN cd /home/allmog018/CNN_Oleander && ls 
 RUN pip3 install -r requirements.txt
