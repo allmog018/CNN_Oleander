@@ -5,11 +5,11 @@ RUN apt-get update && apt install -y python3-pip sudo
 RUN apt-get install -y software-properties-common sudo
 RUN add-apt-repository ppa:deadsnakes/ppa
 RUN apt-get update
-RUN apt-get install -y python3.8 sudo
+RUN apt-get install -y python3.7 sudo
 
-RUN apt-get install -y python3.8-dev sudo
+RUN apt-get install -y python3.7-dev sudo
 
-RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.8 1
+RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.7 1
 RUN apt install -y python3.8-distutils sudo
 #RUN python -m pip install --upgrade pip
 RUN apt install curl
@@ -28,7 +28,6 @@ RUN chown -R allmog018:allmog018 /home/allmog018/
 COPY --chown=allmog018 . /home/allmog018/
 USER allmog018
 RUN cd /home/allmog018/ && pip3 install -r requirements.txt
-RUN pip install conda
-RUN echo "export PATH=~/anaconda3/bin:$PATH" >> ~/.bashrc 
-RUN conda install pytorch==1.1.0 torchvision==0.3.0 cudatoolkit=9.0 -c pytorch
+RUN pip install torchvision-0.3.0-cp37-cp37m-manylinux1_x86_64.whl
+RUN pip install torch-1.1.0-cp37-cp37m-linux_x86_64.whl
 WORKDIR /home/allmog018/
