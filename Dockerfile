@@ -25,7 +25,7 @@ RUN pip install Cython
 
 RUN useradd -m allmog018
 RUN chown -R allmog018:allmog018 /home/allmog018/
-COPY --chown=allmog018 /home/allmog018/app/ /home/allmog018/
+COPY --chown=allmog018 . /home/allmog018/app/
 USER allmog018
 RUN cd /home/allmog018/CNN_Oleander && ls && pip3 install -r requirements.txt
 RUN pip install /home/allmog018/torchvision-0.3.0-cp37-cp37m-manylinux1_x86_64.whl
