@@ -29,5 +29,5 @@ COPY --chown=allmog018 . /home/allmog018
 USER allmog018
 RUN cd /home/allmog018/ && pip3 install -r requirements.txt
 RUN pip install /home/allmog018/torchvision-0.3.0-cp36-cp37m-manylinux1_x86_64.whl
-RUN pip install /home/allmog018/torch-1.1.0-cp37-cp36m-linux_x86_64.whl
+RUN pip install /home/allmog018/torch-1.1.0-cp36-cp36m-linux_x86_64.whl
 WORKDIR /home/allmog018/
