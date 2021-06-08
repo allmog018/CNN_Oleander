@@ -5,11 +5,11 @@ RUN apt-get update && apt install -y python3-pip sudo
 RUN apt-get install -y software-properties-common sudo
 RUN add-apt-repository ppa:deadsnakes/ppa
 RUN apt-get update
-RUN apt-get install -y python3.6 sudo
+RUN apt-get install -y python3.5 sudo
 
-RUN apt-get install -y python3.6-dev sudo
+RUN apt-get install -y python3.5-dev sudo
 
-RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 1
+RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.5 1
 #RUN apt install -y python3.6-distutils sudo
 #RUN python -m pip install --upgrade pip
 RUN apt install curl
@@ -28,6 +28,6 @@ RUN chown -R allmog018:allmog018 /home/allmog018/
 COPY --chown=allmog018 . /home/allmog018
 USER allmog018
 RUN cd /home/allmog018/ && pip3 install -r requirements.txt
-RUN pip install /home/allmog018/torchvision-0.3.0-cp36-cp36m-manylinux1_x86_64.whl
-RUN pip install /home/allmog018/torch-1.1.0-cp36-cp36m-linux_x86_64.whl
+RUN pip install /home/allmog018/torchvision-0.3.0-cp35-cp35m-manylinux1_x86_64.whl
+RUN pip install /home/allmog018/torch-1.1.0-cp35-cp35m-linux_x86_64.whl
 WORKDIR /home/allmog018/
