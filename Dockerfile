@@ -10,7 +10,7 @@ RUN apt-get install -y python3.6 sudo
 RUN apt-get install -y python3.6-dev sudo
 
 RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 1
-RUN apt install -y python3.6-distutils sudo
+#RUN apt install -y python3.6-distutils sudo
 #RUN python -m pip install --upgrade pip
 RUN apt install curl
 RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
