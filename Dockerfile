@@ -14,7 +14,7 @@ RUN update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
 #RUN python -m pip install --upgrade pip
 RUN apt install curl
 RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-RUN python get-pip.py --force-reinstall
+#RUN python get-pip.py --force-reinstall
 
 RUN echo "export PATH=/home/allmog018/.local/bin" >> ~/.bashrc 
 RUN pip install --upgrade setuptools 
