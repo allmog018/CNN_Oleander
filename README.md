@@ -1,7 +1,29 @@
-# NN-Oleander-Detection
-This repository contains scripts to support the training of NNs to detect Oleander plants in drone imagery.
-The scripts to download images will work with csv file exported from [Labelbox](https://labelbox.com/).
-The training notebook is mostly easily used in [python notebooks](https://nbviewer.jupyter.org/github/jupyter/notebook/blob/master/docs/source/examples/Notebook/What%20is%20the%20Jupyter%20Notebook.ipynb#).
+# CNN_Oleander
+This repository is intended for use in conjunction with Mogamat Nur Ally's (ALLMOG018) EEE4022F final year project.
+This repository contains the files necessary to train and validate a CNN model using pytorch. This repository also forms part of the pipeline intended to be used in conjunction with a virtual machine. The machine used for this project was acquired from vast.ai.
+
+## VM setup
+### install git and download the repo to the install git and download the repo
+```bash
+$ apt-get update
+$ apt-get install -y curl git-core
+$ chmod 700 ~/.ssh
+```
+2. open the authorized
+```bash
+$ nano authorized_keys
+```
+
+### establish ssh and sftp file transfer
+1. Navigate to ssh directory
+
+```bash
+$ cd /root/.ssh
+```
+2. open the authorized
+```bash
+$ nano authorized_keys
+```
 
 [Google Colaboratory](https://colab.research.google.com/notebooks/intro.ipynb) is recommended when you require a Jupyter notebook environment with a ready-to-use GPU in the Cloud.
 
