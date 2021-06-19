@@ -69,7 +69,11 @@ cd CNN_Oleander
 git pull
 
 -----------------------------------------
+
+
 cd CNN_Oleander
 git pull 
 git commit . -m 'updated notebook'
 git push
+df -ih
+free -m
