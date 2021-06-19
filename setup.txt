@@ -77,3 +77,4 @@ git commit . -m 'updated notebook'
 git push
 df -ih
 free -m
+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
