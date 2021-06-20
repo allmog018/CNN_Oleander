@@ -180,5 +180,5 @@ for epoch in range(num_epochs):
     evaluate(model, data_loader_test, device=device)
     
 # save
-SAVEPATH = "/root/CNN_Oleander/"
-torch.save(model.state_dict(), SAVEPATH)
+checkpoint = {'state_dict' : model.state_dict(), 'optimizer': optimizer.state_dict()}
+torch.save(checkpoint, "my_model.pth.tar")
