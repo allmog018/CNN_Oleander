@@ -13,6 +13,9 @@ import torchvision
 from torchvision.models.detection.faster_rcnn import FastRCNNPredictor
 from torchvision.models.detection.mask_rcnn import MaskRCNNPredictor
 
+import torch.onnx as onnx
+import torchvision.models as models
+
 from engine import train_one_epoch, evaluate
 import utils
 import transforms as T
@@ -166,7 +169,7 @@ lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer,
 # train for epochs
 # NB: change number of epochs according to the size of dataset
 # few epochs for small dataset to avoid overfitting
-num_epochs = 2
+num_epochs = 10
 
 for epoch in range(num_epochs):
     # train for one epoch, printing every 5 iteration
@@ -176,10 +179,5 @@ for epoch in range(num_epochs):
     # evaluate on the test dataset
     evaluate(model, data_loader_test, device=device)
     
-# test
-# pick one image from the test set
-img, _ = dataset_test[1]
-# put the model in evaluation mode
-model.eval()
-with torch.no_grad():
-    prediction = model([img.to(device)])
+# save model
+torch.save(model.state_dict(), "/root/CNN_Oleander")
