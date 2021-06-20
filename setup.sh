@@ -1,4 +1,5 @@
 apt-get update
+#!/bin/bash
 apt-get install -y curl git-core
 mkdir -p ~/.ssh && chmod 700 ~/.ssh
 cat > ~/.ssh/id_rsa <<- EOM
@@ -57,24 +58,18 @@ dd77zQp1oxdzJy1uUwWTuXIRI49Wp+RRdUuBaFdJFDMlJlsXmhjIILST1eM=
 EOM
 chmod 400 ~/.ssh/id_rsa
 
-ssh-keygen -F gitlab.com || ssh-keyscan gitlab.com >>~/.ssh/known_hosts
+ssh-keygen -F github.com || ssh-keyscan github.com >>~/.ssh/known_hosts
 
 git config --global user.email "allmog018@myuct.ac.za"
 git config --global user.name "allmog018"
 
-test -e CNN_Oleander || git clone git@gitlab.com:allmog018/CNN_Oleander.git
+test -e CNN_Oleander || git clone git@github.com:allmog018/CNN_Oleander.git
 
 cd CNN_Oleander
 
 git pull
 
------------------------------------------
-
-
-cd CNN_Oleander
-git pull 
-git commit . -m 'updated notebook'
-git push
-df -ih
-free -m
-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
+apt-get install pip
+pip install pycocotools
+pip install torch
+pip install torchvision
