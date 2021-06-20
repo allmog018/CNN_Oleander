@@ -179,5 +179,6 @@ for epoch in range(num_epochs):
     # evaluate on the test dataset
     evaluate(model, data_loader_test, device=device)
     
-# save model
-torch.save(model.state_dict(), "/root/CNN_Oleander/")
+# save
+SAVEPATH = "/root/CNN_Oleander/"
+torch.save(model.state_dict(), SAVEPATH)
