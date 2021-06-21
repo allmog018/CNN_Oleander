@@ -14,6 +14,7 @@ import torchvision.models as models
 from engine import train_one_epoch, evaluate
 import utils
 import transforms as T
+from torch.profiler import profile, record_function, ProfilerActivity
 
 class NNDataset(torch.utils.data.Dataset):
     def __init__(self, root, transforms=None):
@@ -165,7 +166,8 @@ for epoch in range(num_epochs):
     lr_scheduler.step()
     # evaluate on the test dataset
     evaluate(model, data_loader_test, device=device)
-    
-# save
-checkpoint = {'state_dict' : model.state_dict(), 'optimizer': optimizer.state_dict()}
-torch.save(checkpoint, "my_fasterrcnn_model.pth.tar")
+    if (epoch%2==0):
+        # save
+        checkpoint = {'state_dict' : model.state_dict(), 'optimizer': optimizer.state_dict()}
+        torch.save(checkpoint, "my_fasterrcnn_model.pth.tar")
+
