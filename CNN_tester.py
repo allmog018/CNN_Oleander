@@ -75,9 +75,10 @@ class NNDataset(torch.utils.data.Dataset):
             img, target = self.transforms(img, target)
 
         return img, target
-
-def __len__(self):
+        
+    def __len__(self):
         return len(self.imgs)
+
 
 def get_transform(train):
     transforms = []
@@ -89,7 +90,7 @@ def get_transform(train):
         transforms.append(T.RandomHorizontalFlip(0.5))
         # NB: may add rotation and resize operations
     return T.Compose(transforms)
-    
+
 print ("start")
 dataset = NNDataset('/root/CNN_Oleander/dataset/', get_transform(train=True))
 dataset_test = NNDataset('/root/CNN_Oleander/dataset/', get_transform(train=False))
