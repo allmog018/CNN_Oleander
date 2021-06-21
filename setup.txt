@@ -69,7 +69,7 @@ cd CNN_Oleander
 
 git pull
 
-apt-get install pip
+apt-get -y install pip
 pip install pycocotools
 pip install torch
 pip install torchvision
