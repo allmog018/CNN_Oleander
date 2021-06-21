@@ -156,7 +156,7 @@ optimizer.load_state_dict(torch.load("my_maskrcnn_model.pth.tar")['optimizer'])
 # few epochs for small dataset to avoid overfitting
 
 
-num_epochs = 10
+num_epochs = 40
 
 for epoch in range(num_epochs):
     # train for one epoch, printing every 5 iteration
