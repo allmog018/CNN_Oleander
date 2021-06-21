@@ -75,7 +75,7 @@ class NNDataset(torch.utils.data.Dataset):
             img, target = self.transforms(img, target)
 
         return img, target
-        
+
     def __len__(self):
         return len(self.imgs)
 
@@ -122,7 +122,7 @@ num_classes = 2
 
 # get the model using our helper function
 model = torchvision.models.detection.maskrcnn_resnet50_fpn() # we do not specify pretrained=True, i.e. do not load default weights
-model.load_state_dict(torch.load(torch.load("my_model.pth.tar")['state_dict']))
+model.load_state_dict(torch.load("my_model.pth.tar")['state_dict'])
 model.to(device)
 # construct an optimizer
 params = [p for p in model.parameters() if p.requires_grad]
@@ -131,7 +131,7 @@ lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer,
                                                step_size=3,
                                                gamma=0.1)
 
-optimizer.load_state_dict(torch.load(torch.load("my_model.pth.tar")['optimizer']))
+optimizer.load_state_dict(torch.load("my_model.pth.tar")['optimizer'])
 # and a learning rate scheduler which decreases the learning rate by
 # 10x every 3 epochs
 
