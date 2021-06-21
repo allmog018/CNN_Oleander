@@ -122,6 +122,7 @@ def get_transform(train):
 
 
 # use our dataset and defined transformations
+print ("start")
 dataset = NNDataset('/root/CNN_Oleander/dataset/', get_transform(train=True))
 dataset_test = NNDataset('/root/CNN_Oleander/dataset/', get_transform(train=False))
 
