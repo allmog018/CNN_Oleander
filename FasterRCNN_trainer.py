@@ -122,7 +122,7 @@ num_classes = 2
 
 
 # get the model using our helper function
-model = torchvision.models.detection.fastercnn_resnet50_fpn() # we do not specify pretrained=True, i.e. do not load default weights
+model = torchvision.models.detection.fasterrcnn_resnet50_fpn() # we do not specify pretrained=True, i.e. do not load default weights
 in_features = model.roi_heads.box_predictor.cls_score.in_features
     # replace the pre-trained head with a new one
 model.roi_heads.box_predictor = FastRCNNPredictor(in_features, num_classes)

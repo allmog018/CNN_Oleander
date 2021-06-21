@@ -89,7 +89,7 @@ class NNDataset(torch.utils.data.Dataset):
       
 def get_instance_segmentation_model(num_classes):
     # load an instance segmentation model pre-trained on COCO
-    model = torchvision.models.detection.fastercnn_resnet50_fpn(pretrained=True)
+    model = torchvision.models.detection.fasterrcnn_resnet50_fpn(pretrained=True)
 
     # get the number of input features for the classifier
     in_features = model.roi_heads.box_predictor.cls_score.in_features
