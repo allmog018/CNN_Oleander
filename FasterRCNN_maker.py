@@ -170,7 +170,7 @@ lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer,
 # train for epochs
 # NB: change number of epochs according to the size of dataset
 # few epochs for small dataset to avoid overfitting
-num_epochs = 10
+num_epochs = 1
 
 for epoch in range(num_epochs):
     # train for one epoch, printing every 5 iteration
