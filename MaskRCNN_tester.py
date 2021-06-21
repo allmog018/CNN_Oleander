@@ -1,8 +1,3 @@
-#Initialisation of dataset and CNN structure
-
-
-
-# define the dataset
 import os
 import numpy as np
 import torch
@@ -84,30 +79,6 @@ class NNDataset(torch.utils.data.Dataset):
     def __len__(self):
         return len(self.imgs)
 
-# import Mask R-CNN architecture for fine-tuning
-
-      
-def get_instance_segmentation_model(num_classes):
-    # load an instance segmentation model pre-trained on COCO
-    model = torchvision.models.detection.maskrcnn_resnet50_fpn(pretrained=True)
-
-    # get the number of input features for the classifier
-    in_features = model.roi_heads.box_predictor.cls_score.in_features
-    # replace the pre-trained head with a new one
-    model.roi_heads.box_predictor = FastRCNNPredictor(in_features, num_classes)
-
-    # now get the number of input features for the mask classifier
-    in_features_mask = model.roi_heads.mask_predictor.conv5_mask.in_channels
-    hidden_layer = 256
-    # and replace the mask predictor with a new one
-    model.roi_heads.mask_predictor = MaskRCNNPredictor(in_features_mask,
-                                                       hidden_layer,
-                                                       num_classes)
-
-    return model
-    
-# import helper functions
-
 
 def get_transform(train):
     transforms = []
@@ -120,9 +91,8 @@ def get_transform(train):
         # NB: may add rotation and resize operations
     return T.Compose(transforms)
 
-
-# use our dataset and defined transformations
 print ("start")
+torch.cuda.empty_cache()
 dataset = NNDataset('/root/CNN_Oleander/dataset/', get_transform(train=True))
 dataset_test = NNDataset('/root/CNN_Oleander/dataset/', get_transform(train=False))
 
@@ -150,26 +120,42 @@ device = torch.device('cuda') #if torch.cuda.is_available() else torch.device('c
 # our dataset has two classes only - background and label
 num_classes = 2
 
+
 # get the model using our helper function
-model = get_instance_segmentation_model(num_classes)
-# move model to the right device
+model = torchvision.models.detection.maskrcnn_resnet50_fpn() # we do not specify pretrained=True, i.e. do not load default weights
+in_features = model.roi_heads.box_predictor.cls_score.in_features
+    # replace the pre-trained head with a new one
+model.roi_heads.box_predictor = FastRCNNPredictor(in_features, num_classes)
+
+    # now get the number of input features for the mask classifier
+in_features_mask = model.roi_heads.mask_predictor.conv5_mask.in_channels
+hidden_layer = 256
+    # and replace the mask predictor with a new one
+model.roi_heads.mask_predictor = MaskRCNNPredictor(in_features_mask,
+                                                       hidden_layer,
+                                                       num_classes)
+model.load_state_dict(torch.load("my_maskrcnn_model.pth.tar")['state_dict'])
 model.to(device)
 
 # construct an optimizer
 params = [p for p in model.parameters() if p.requires_grad]
 optimizer = torch.optim.SGD(params, lr=0.005,
                             momentum=0.9, weight_decay=0.0005)
-
-# and a learning rate scheduler which decreases the learning rate by
-# 10x every 3 epochs
 lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer,
                                                step_size=3,
                                                gamma=0.1)
+
+optimizer.load_state_dict(torch.load("my_maskrcnn_model.pth.tar")['optimizer'])
+# and a learning rate scheduler which decreases the learning rate by
+# 10x every 3 epochs
+
 
 # CNN training
 # train for epochs
 # NB: change number of epochs according to the size of dataset
 # few epochs for small dataset to avoid overfitting
+
+
 num_epochs = 10
 
 for epoch in range(num_epochs):
@@ -182,4 +168,4 @@ for epoch in range(num_epochs):
     
 # save
 checkpoint = {'state_dict' : model.state_dict(), 'optimizer': optimizer.state_dict()}
-torch.save(checkpoint, "my_model.pth.tar")
+torch.save(checkpoint, "my_fasterrcnn_model.pth.tar")
