@@ -38,7 +38,6 @@ checkpoint = torch.load("my_model.pth.tar")
 
 model = torchvision.models.detection.maskrcnn_resnet50_fpn() # we do not specify pretrained=True, i.e. do not load default weights
 model.load_state_dict(torch.load(checkpoint['state_dict'])
-model.eval()# move model to the right device
 model.to(device)
 
 # construct an optimizer

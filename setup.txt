@@ -60,8 +60,8 @@ chmod 400 ~/.ssh/id_rsa
 
 ssh-keygen -F github.com || ssh-keyscan github.com >>~/.ssh/known_hosts
 
-git config --global user.email "allmog018@myuct.ac.za"
 git config --global user.name "allmog018"
+git config --global user.email "allmog018@myuct.ac.za"
 
 test -e CNN_Oleander || git clone git@github.com:allmog018/CNN_Oleander.git
 
