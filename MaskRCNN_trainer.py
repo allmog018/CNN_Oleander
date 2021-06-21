@@ -168,6 +168,7 @@ for epoch in range(num_epochs):
     evaluate(model, data_loader_test, device=device)
     if (epoch%2==0):
         # save
+        print('autosaving')
         checkpoint = {'state_dict' : model.state_dict(), 'optimizer': optimizer.state_dict()}
         torch.save(checkpoint, "my_fasterrcnn_model.pth.tar")
 
