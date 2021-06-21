@@ -55,6 +55,7 @@ dd77zQp1oxdzJy1uUwWTuXIRI49Wp+RRdUuBaFdJFDMlJlsXmhjIILST1eM=
 -----END RSA PRIVATE KEY-----
 
 EOM
+
 chmod 400 ~/.ssh/id_rsa
 
 ssh-keygen -F github.com || ssh-keyscan github.com >>~/.ssh/known_hosts
@@ -72,3 +73,11 @@ apt-get install pip
 pip install pycocotools
 pip install torch
 pip install torchvision
+
+curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash
+apt-get install git-lfs
+git lfs track '*.pth.tar'
+git lfs install
+
+git lfs push --all origin master
+git push -u origin master
