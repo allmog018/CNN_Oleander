@@ -92,6 +92,7 @@ def get_transform(train):
     return T.Compose(transforms)
 
 print ("start")
+torch.cuda.empty_cache()
 dataset = NNDataset('/root/CNN_Oleander/dataset/', get_transform(train=True))
 dataset_test = NNDataset('/root/CNN_Oleander/dataset/', get_transform(train=False))
 
