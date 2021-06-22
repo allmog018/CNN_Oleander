@@ -102,8 +102,8 @@ torch.manual_seed(1)
 indices = torch.randperm(len(dataset)).tolist()
 print(len(dataset))
 # NB: change the portion of train and test set according to the size of the whole dataset
-dataset_test = torch.utils.data.Subset(dataset_test, indices[:-6])
-dataset = torch.utils.data.Subset(dataset, indices[-6:])
+dataset_test = torch.utils.data.Subset(dataset_test, indices[:-46])
+dataset = torch.utils.data.Subset(dataset, indices[-46:])
 
 print(len(dataset))
 
