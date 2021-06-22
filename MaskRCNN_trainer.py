@@ -170,7 +170,7 @@ for epoch in range(num_epochs):
         # save
         print('autosaving')
         checkpoint = {'state_dict' : model.state_dict(), 'optimizer': optimizer.state_dict()}
-        torch.save(checkpoint, "my_fasterrcnn_model.pth.tar")
+        torch.save(checkpoint, "my_maskrcnn_model.pth.tar")
         nvidia_smi.nvmlInit()
 
         handle = nvidia_smi.nvmlDeviceGetHandleByIndex(0)
