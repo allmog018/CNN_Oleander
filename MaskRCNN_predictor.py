@@ -102,8 +102,9 @@ torch.manual_seed(1)
 indices = torch.randperm(len(dataset)).tolist()
 print(len(dataset))
 # NB: change the portion of train and test set according to the size of the whole dataset
-dataset = torch.utils.data.Subset(dataset, indices[:-6])
-dataset_test = torch.utils.data.Subset(dataset_test, indices[-6:])
+dataset_test = torch.utils.data.Subset(dataset_test, indices[:-6])
+dataset = torch.utils.data.Subset(dataset, indices[-6:])
+
 print(len(dataset))
 
 # define training and validation data loaders
@@ -147,6 +148,12 @@ lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer,
                                                gamma=0.1)
 
 optimizer.load_state_dict(torch.load("my_maskrcnn_model.pth.tar")['optimizer'])
+
+num_epochs = 1
+
+for epoch in range(num_epochs):
+    # evaluate on the test dataset
+    evaluate(model, data_loader_test, device=device)
 
 # pick one image from the test set
 img, _ = dataset_test[0]
