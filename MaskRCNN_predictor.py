@@ -149,11 +149,7 @@ lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer,
 
 optimizer.load_state_dict(torch.load("my_maskrcnn_model.pth.tar")['optimizer'])
 
-num_epochs = 1
-
-for epoch in range(num_epochs):
-    # evaluate on the test dataset
-    evaluate(model, data_loader_test, device=device)
+evaluate(model, data_loader_test, device=device)
 
 # pick one image from the test set
 img, _ = dataset_test[0]
