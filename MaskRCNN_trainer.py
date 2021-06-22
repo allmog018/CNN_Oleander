@@ -3,7 +3,7 @@ import numpy as np
 import torch
 import torch.utils.data
 from PIL import Image
-
+import nvidia_smi
 import torchvision
 from torchvision.models.detection.faster_rcnn import FastRCNNPredictor
 from torchvision.models.detection.mask_rcnn import MaskRCNNPredictor
@@ -171,19 +171,15 @@ for epoch in range(num_epochs):
         print('autosaving')
         checkpoint = {'state_dict' : model.state_dict(), 'optimizer': optimizer.state_dict()}
         torch.save(checkpoint, "my_fasterrcnn_model.pth.tar")
+        nvidia_smi.nvmlInit()
 
-import nvidia_smi
+        handle = nvidia_smi.nvmlDeviceGetHandleByIndex(0)
+        # card id 0 hardcoded here, there is also a call to get all available card ids, so we could iterate
 
-nvidia_smi.nvmlInit()
+        info = nvidia_smi.nvmlDeviceGetMemoryInfo(handle)
 
-handle = nvidia_smi.nvmlDeviceGetHandleByIndex(0)
-# card id 0 hardcoded here, there is also a call to get all available card ids, so we could iterate
+        print("Total memory:", info.total)
+        print("Free memory:", info.free)
+        print("Used memory:", info.used)
 
-info = nvidia_smi.nvmlDeviceGetMemoryInfo(handle)
-
-print("Total memory:", info.total)
-print("Free memory:", info.free)
-print("Used memory:", info.used)
-
-nvidia_smi.nvmlShutdown()
-
+        nvidia_smi.nvmlShutdown()
