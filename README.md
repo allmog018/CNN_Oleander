@@ -3,74 +3,32 @@ This repository is intended for use in conjunction with Mogamat Nur Ally's (ALLM
 This repository contains the files necessary to train and validate a CNN model using pytorch. This repository also forms part of the pipeline intended to be used in conjunction with a virtual machine. The machine used for this project was acquired from vast.ai.
 
 ## VM setup
-### install git and download the repo to the install git and download the repo
+1. ssh into the VM
+ensure that the VM or server is running Ubuntu 20.04 and has CUDA 11.1 installed
+
+2. run all commands found in the setup.txt file
+
+## Create a Mask-R-CNN model
 ```bash
-$ apt-get update
-$ apt-get install -y curl git-core
-$ chmod 700 ~/.ssh
+$ python3 MaskRCNN_maker.py
 ```
-2. open the authorized
+
+## Train the created model
+This script saves model progress every 2 epochs. Train the model until the loss values converge or overfit
 ```bash
-$ nano authorized_keys
+$ python3 MaskRCNN_trainer.py
 ```
-
-### establish ssh and sftp file transfer
-1. Navigate to ssh directory
-
+## Use the model
+This script will take in an image from the dataset and produce a predicted mask for the image called outputMask.jpg and also save the input image as inputImage.jpg.
+This script will also output average accuracy characteristic values.
 ```bash
-$ cd /root/.ssh
+$ python3 MaskRCNN_predictor.py
 ```
-2. open the authorized
-```bash
-$ nano authorized_keys
-```
+## Keys
+vast-ai-ssh-key.pub contains the public ssh key used to access the repository as well as scp to the VM/server.
+vast-ai-ssh-key contains the private ssh key used to access the repository as well as scp to the VM/server.
+Use these keys to establish SCP communication with the VM/server to retrieve the model save file "my_maskrcnn_model.pth.tar".
+Sometimes these keys need to be verified on github under the Deploy keys tab in Settings.
 
-[Google Colaboratory](https://colab.research.google.com/notebooks/intro.ipynb) is recommended when you require a Jupyter notebook environment with a ready-to-use GPU in the Cloud.
-
-Currently scripts provided carry out 3 processes:
-1. Fetching images from the web
-2. Cropping the images according to labels 
-3. Saving images in directories intended to prepare them for use in the PyTorch based NN training workflow described in [TorchVision Object Detection Finetuning Tutorial](https://pytorch.org/tutorials/intermediate/torchvision_tutorial.html)
-
-To use these scripts with this pipeline, first execute as described below, after which the tutorial steps may be followed as is.
-
-## Prerequisites
-Python3 and python modules:
-Numpy, Pillow, OpenCV, Requests
-There are multiple ways of installing the above, 1 approach is to use Anaconda.  If you use this approach the following will work on most operating systems from a terminal:
-1. Install Anaconda for whichever OS you are using follow their [docs](https://conda.io/projects/conda/en/latest/user-guide/install/index.html)
-2. Create and activate a conda environment and the run the following and the example
-```bash
-$ conda create --name MyNewPythonEnvironment
-$ conda activate MyNewPythonEnvironment
-$ conda install pillow opencv requests
-```
-
-## Usage Example
-### Download Images
-```sh
-$ python download_image.py -p ExampleProject -l "Label 1","Label 2" -csv Example.csv -txt Example.txt -s 1
-```
-#### Command line options:
-##### `-p/--projname`: project name
-Project name by which the output root directory will be named
-##### `-l/--labels`: labels
-Labels of image annotation, sub-directories will be created for each label
-##### `-csv/--csvfile`: csv file
-CSV file exported from Labelbox which contains data of annotated images
-##### `-txt/--txtfile`: text file (optional)
-Text file which contains IDs of images selected for downloaded
-##### `-s/--size`: number of images (optional)
-Maximum number of images to be downloaded
-
-### NN Training
-Upload to your Google Drive a zipped folder of the images downloaded
-
-Mount your Google Drive to the notebook
-
-Unzip the folder to load the images on the hosted server
-
-Run the blocks to set up and train the NN
-  * You may change the number of epochs to train for based on the size of your dataset
-## Credits
-The NN Training notebook is based on [TorchVision Object Detection Finetuning Tutorial](https://pytorch.org/tutorials/intermediate/torchvision_tutorial.html)
+## Dependencies
+coco_eval.py , coco_utils.py , engine.py , transforms.py , and utils.py are all dependencies required by the scripts. 
